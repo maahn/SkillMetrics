@@ -61,6 +61,25 @@ def plot_pattern_diagram_colorbar(X,Y,Z,option):
     hp = plt.scatter(X,Y, s=markerSize, c=Z, marker = 'd')
     hp.set_facecolor(hp.get_edgecolor())
     
+    for i in range(len(X)):
+        # Check if marker labels provided
+        if type(option['markerlabel']) is list:
+            # Label marker
+            xlim = plt.gca().get_xlim()[1]
+            offset = 0.02*xlim
+
+            xtextpos = X[i] - offset
+            ytextpos = Y[i] + offset
+
+
+            plt.text(xtextpos,ytextpos,option['markerlabel'][i], 
+                     color = option['markerlabelcolor'],
+                     verticalalignment = 'bottom',
+                     horizontalalignment = 'right',
+                     fontsize = fontSize)
+
+
+
     # Set parameters for color bar location
     location = option['locationcolorbar'].lower()
     xscale= 1.0
